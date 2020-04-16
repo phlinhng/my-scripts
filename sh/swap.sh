@@ -21,6 +21,7 @@ swapon /swapfile
 echo "/swapfile swap swap defaults 0 0" >> /etc/fstab
 
 # set swap percentage
+sysctl vm.swappiness=10
 echo "vm.swappiness=10" >> /etc/sysctl.conf
 
 free -h
