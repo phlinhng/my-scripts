@@ -16,7 +16,6 @@ chmod +x quartz_uninstall.sh
 ./quartz_uninstall.sh
 
 # 删除阿里云盾文件残留
-
 pkill aliyun-service
 rm -rf /etc/init.d/agentwatch /usr/sbin/aliyun-service
 rm -rf /usr/local/aegis*
