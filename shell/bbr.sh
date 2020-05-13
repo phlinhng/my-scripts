@@ -23,6 +23,7 @@ colorEcho() {
 if [[ ! $(lsmod | grep bbr) ]]; then
   ${sudoCmd} modprobe tcp_bbr
   echo "tcp_bbr" | ${sudoCmd} tee -a /etc/modules-load.d/modules.conf >/dev/null
+  # If Linux 4.19 or newer, use cake; else fq_codel
   echo "net.core.default_qdisc=cake" | ${sudoCmd} tee -a /etc/sysctl.conf >/dev/null
   echo "net.ipv4.tcp_congestion_control=bbr" | ${sudoCmd} tee -a /etc/sysctl.conf >/dev/null
   ${sudoCmd} sysctl -p
