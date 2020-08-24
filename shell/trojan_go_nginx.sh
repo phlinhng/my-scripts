@@ -21,3 +21,15 @@ wget -q https://raw.githubusercontent.com/phlinhng/web-templates/master/${templa
 ${sudoCmd} mkdir -p /var/www/html
 ${sudoCmd} unzip -q /tmp/template.zip -d /var/www/html
 ${sudoCmd} wget -q https://raw.githubusercontent.com/phlinhng/v2ray-tcp-tls-web/master/custom/robots.txt -O /var/www/html/robots.txt
+
+# replace /etc/nginx/sites-available/default to make force ssl redirection
+cat > /etc/nginx/sites-available/default <<-EOF
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	server_name _;
+	return 301 https://\$host\$request_uri;
+}
+EOF
+
