@@ -33,3 +33,5 @@ server {
 }
 EOF
 
+# get acme.sh
+curl https://get.acme.sh | sh
