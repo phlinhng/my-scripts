@@ -1,4 +1,4 @@
-# !/bin/bash
+#!/bin/bash
 
 latest_version=`curl -s "https://api.github.com/repos/XTLS/Xray-core/releases/latest" | jq '.tag_name' --raw-output`
 url="https://github.com/XTLS/Xray-core/releases/download/${latest_version}/Xray-linux-64.zip"
@@ -9,6 +9,8 @@ unzip -q xray.zip && rm xray.zip
 
 mv xray /usr/local/bin/xray && chmod +x /usr/local/bin/xray
 printf "Installed: %s\n" "/usr/local/bin/xray"
+
+mkdir -p /usr/local/share/xray
 
 $(which mv) geoip.dat /usr/local/share/xray/geoip.dat
 printf "Installed: %s\n" "/usr/local/share/xray/geoip.dat"
