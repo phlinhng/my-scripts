@@ -1,7 +1,23 @@
 #!/bin/bash
 
+identify_the_operating_system_and_architecture() {
+  if [[ "$(uname)" == 'Linux' ]]; then
+    case "$(uname -m)" in
+      'amd64' | 'x86_64')
+        MACHINE='64'
+        ;;
+      'armv8' | 'aarch64')
+        MACHINE='arm64-v8a'
+        ;;
+    esac
+  else
+    echo "error: This operating system is not supported."
+    exit 1
+  fi
+}
+
 latest_version=`curl -s "https://api.github.com/repos/XTLS/Xray-core/releases/latest" | grep 'name' | cut -d\" -f4 | head -1`
-url="https://github.com/XTLS/Xray-core/releases/download/${latest_version}/Xray-linux-64.zip"
+url="https://github.com/XTLS/Xray-core/releases/download/${latest_version}/Xray-linux-${MACHINE}.zip"
 
 cd $(mktemp -d)
 wget -q --show-progress "${url}" -O xray.zip
