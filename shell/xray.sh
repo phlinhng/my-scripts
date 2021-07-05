@@ -16,6 +16,8 @@ identify_the_operating_system_and_architecture() {
   fi
 }
 
+identify_the_operating_system_and_architecture
+
 latest_version=`curl -s "https://api.github.com/repos/XTLS/Xray-core/releases/latest" | grep 'name' | cut -d\" -f4 | head -1`
 url="https://github.com/XTLS/Xray-core/releases/download/${latest_version}/Xray-linux-${MACHINE}.zip"
 
