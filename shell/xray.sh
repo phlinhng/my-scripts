@@ -38,6 +38,8 @@ RestartPreventExitStatus=23
 [Install]
 WantedBy=multi-user.target
 EOF
+
+systemctl daemon-reload
 systemctl enable xray
 
 (crontab -l 2>/dev/null; echo "0 7 * * * wget -q https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geoip.dat -O /usr/local/share/xray/geoip.dat >/dev/null >/dev/null") | crontab -
