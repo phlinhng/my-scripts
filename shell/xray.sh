@@ -1,6 +1,6 @@
 #!/bin/bash
 
-latest_version=`curl -s "https://api.github.com/repos/XTLS/Xray-core/releases/latest" | jq '.tag_name' --raw-output`
+latest_version=`curl -s "https://api.github.com/repos/XTLS/Xray-core/releases/latest" | grep 'name' | cut -d\" -f4 | head -1`
 url="https://github.com/XTLS/Xray-core/releases/download/${latest_version}/Xray-linux-64.zip"
 
 cd $(mktemp -d)
