@@ -29,7 +29,7 @@ url="https://github.com/XTLS/Xray-core/releases/download/${latest_version}/Xray-
 
 cd $(mktemp -d)
 wget -q --show-progress "${url}" -O xray.zip
-unzip -q xray.zip && rm xray.zip
+unzip -q xray.zip && $(which rm) -f xray.zip
 
 mv xray /usr/local/bin/xray && chmod +x /usr/local/bin/xray
 printf "Installed: %s\n" "/usr/local/bin/xray"
